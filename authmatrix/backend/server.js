@@ -22,7 +22,10 @@ app.use(helmet());
 // CORS configuration
 app.use(
   cors({
-    origin: process.env.CLIENT_ORIGIN || 'https://authmatrixx.vercel.app"',
+    origin: [
+      "https://authmatrixx.vercel.app",
+      "http://localhost:5173"
+    ],
     credentials: true,
   })
 );
