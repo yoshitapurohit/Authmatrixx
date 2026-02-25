@@ -90,36 +90,16 @@ authmatrix/
   - cors
   - dotenv
 
+### 🌐 Live Deployment
+
+Frontend (Vercel):  
+https://Authmatrixx.vercel.app
+
+Backend (Render):  
+https://Authmatrixx.onrender.com
+
+Database:  
+MongoDB Atlas
 
 
-### Installation & Setup
-
-#### 1. Backend
-
-```bash
-cd authmatrix/backend
-npm install
-
-# Run in development
-npm run dev
-
-# Or run in production mode
-npm start
-```
-
-The backend will start on `http://localhost:5000`.
-
-#### 2. Frontend
-
-```bash
-cd authmatrix/frontend
-npm install
-
-# Start Vite dev server
-npm run dev
-```
-
-The frontend will start on `http://localhost:5173`.
-
----
 
