@@ -1,0 +1,36 @@
+# Node / general
+node_modules
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Env & secrets
+.env
+.env.local
+.env.*.local
+backend/.env
+frontend/.env
+
+# Logs
+logs
+*.log
+log-*.txt
+
+# Build output
+backend/dist
+frontend/dist
+.next
+out
+
+# Editor / OS
+.DS_Store
+Thumbs.db
+.idea
+.vscode
+*.swp
+
+# Coverage / test
+coverage
+.nyc_output
+
