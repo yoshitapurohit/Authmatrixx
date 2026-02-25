@@ -33,13 +33,14 @@ const Register = () => {
       <div className="relative z-10 grid w-full max-w-5xl gap-10 px-4 py-10 md:grid-cols-[1.3fr,1fr] md:py-16">
         <div className="hidden flex-col justify-center md:flex">
           <p className="mb-3 inline-flex items-center gap-2 rounded-full border border-sky-500/30 bg-sky-500/10 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.2em] text-sky-200">
-            Create your space
+            Create a secured workspace
           </p>
           <h1 className="text-3xl font-semibold tracking-tight text-white md:text-4xl">
-            Get started with <span className="text-primary">AuthMatrix</span>.
+            Onboard your team into <span className="text-primary">AuthMatrix</span>.
           </h1>
           <p className="mt-3 max-w-md text-sm text-slate-300">
-            Create an account to access your dashboards, protected resources, and security overview.
+            Start with a single admin and evolve into a full RBAC and risk-aware control plane as
+            your surface area grows.
           </p>
         </div>
 
@@ -48,8 +49,7 @@ const Register = () => {
           <div className="relative rounded-3xl border border-slate-700/70 bg-slate-950/80 p-7 shadow-[0_24px_60px_rgba(15,23,42,1)] backdrop-blur-2xl">
             <h2 className="text-xl font-semibold text-white">Create your account</h2>
             <p className="mt-1 text-xs text-slate-400">
-              You&apos;ll start as a standard user. Admins can later upgrade your access from the
-              dashboard if needed.
+              This user starts as a standard account; you can promote to admin via MongoDB.
             </p>
 
             <AlertBanner message={error} type="error" />
