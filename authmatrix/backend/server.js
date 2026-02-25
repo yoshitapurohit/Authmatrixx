@@ -16,67 +16,101 @@ const resourceRoutes = require('./routes/resourceRoutes');
 
 const app = express();
 
-// Basic security headers
+
+// ✅ Security headers
 app.use(helmet());
 
-// CORS configuration
-app.use(
-  cors({
-    origin: [
-      "https://authmatrixx.vercel.app",
-      "http://localhost:5173"
-    ],
-    credentials: true,
-  })
-);
 
-// Body parsing
+// ✅ CORS CONFIGURATION (FINAL FIX)
+const allowedOrigins = [
+  "https://authmatrixx.vercel.app",
+  "http://localhost:5173"
+];
+
+app.use(cors({
+  origin: function (origin, callback) {
+
+    // allow requests with no origin (Postman, mobile apps)
+    if (!origin) return callback(null, true);
+
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    } else {
+      return callback(new Error("CORS not allowed"));
+    }
+  },
+  credentials: true
+}));
+
+// ✅ handle preflight requests
+app.options("*", cors());
+
+
+// ✅ Body parser
 app.use(express.json());
 
-// Request logging
+
+// ✅ Logging (only in dev)
 if (process.env.NODE_ENV !== 'production') {
   app.use(morgan('dev'));
 }
 
-// Global rate limiter (safety net)
+
+// ✅ Global rate limiter
 const globalLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 1000,
   standardHeaders: true,
   legacyHeaders: false,
 });
+
 app.use(globalLimiter);
 
-// API routes
+
+// ✅ Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/resources', resourceRoutes);
 
-// Health check
+
+// ✅ Health check route
 app.get('/health', (req, res) => {
-  res.json({ status: 'ok', timestamp: new Date().toISOString() });
+  res.json({
+    status: 'ok',
+    timestamp: new Date().toISOString()
+  });
 });
 
-// 404 handler
+
+// ✅ 404 handler
 app.use(notFoundHandler);
 
-// Error handler
+
+// ✅ Error handler
 app.use(errorHandler);
+
 
 const PORT = process.env.PORT || 5000;
 
+
+// ✅ Connect DB and start server
 connectDB()
   .then(() => {
+
     app.listen(PORT, () => {
-      // eslint-disable-next-line no-console
-      console.log(`AuthMatrix backend running on port ${PORT}`);
+
+      console.log(`✅ AuthMatrix backend running on port ${PORT}`);
+
     });
+
   })
   .catch((err) => {
-    // eslint-disable-next-line no-console
-    console.error('Failed to start server due to DB connection error', err);
+
+    console.error('❌ Failed to start server due to DB connection error', err);
+
     process.exit(1);
+
   });
 
-module.exports = app;
 
+module.exports = app;
