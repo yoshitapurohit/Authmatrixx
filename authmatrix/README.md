@@ -90,6 +90,7 @@ authmatrix/
   - cors
   - dotenv
 
+
 ### 🌐 Live Deployment
 
 Frontend (Vercel):  
@@ -100,6 +101,7 @@ https://Authmatrixx.onrender.com
 
 Database:  
 MongoDB Atlas
+
 
 
 
